@@ -1,3 +1,6 @@
 # wisudatahfidz
 wisuda tahfidz 2026
-<img width="880" height="1205" alt="ust H  Sumarli" src="https://github.com/user-attachments/assets/6c86c891-beaa-41c9-b0ed-99ffc4d38168" />
+<img width="704" height="704" alt="ust H  Sumarli" src="https://github.com/user-attachments/assets/223c9557-01d0-4ea7-8ca7-e5a05ceb7f14" />
+<img width="346" height="364" alt="ust totong" src="https://github.com/user-attachments/assets/6abd2765-dfa3-4dca-ac1c-e74fca6953fb" />
+<img width="288" height="334" alt="ust sanwar" src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" />
+
