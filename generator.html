@@ -3,146 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator Link Undangan Wisuda</title>
+    <title>Undangan Wisuda Tahfidz - Masjid Al-Mulk</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #c5a059; /* Gold */
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--primary); }
+
+        /* COVER */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                        url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 450px;
-        }
-        h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
-        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            text-align: center;
+            padding: 20px;
             box-sizing: border-box;
         }
-        button {
-            width: 100%;
-            padding: 12px;
-            color: white;
+
+        .cover h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); margin-bottom: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .cover p { font-size: clamp(0.8rem, 4vw, 1.1rem); letter-spacing: 2px; }
+
+        .btn-open {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50px;
             border: none;
-            border-radius: 6px;
-            margin-top: 10px;
-            cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
         }
-        .gen-btn { background-color: #c5a059; margin-top: 20px; }
-        .gen-btn:hover { background-color: #a6864a; }
+
+        /* CONTENT SECTION */
+        .section { padding: 40px 15px; text-align: center; max-width: 800px; margin: 0 auto; }
         
-        .result-area {
-            margin-top: 25px;
+        .theme-box {
+            border: 1px solid var(--primary);
             padding: 15px;
-            background: #f9f9f9;
-            border: 1px dashed #ccc;
-            border-radius: 6px;
-            word-break: break-all;
-            display: none;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 0.9rem;
         }
-        .copy-btn { background-color: #2ecc71; }
-        .copy-btn:hover { background-color: #27ae60; }
-        
-        .wa-btn { background-color: #25d366; }
-        .wa-btn:hover { background-color: #1ebe57; }
+
+        /* COUNTDOWN */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .countdown-item {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 65px;
+            max-width: 80px;
+            border-bottom: 3px solid var(--primary);
+        }
+        .countdown-item span { display: block; font-size: 1.2rem; font-weight: bold; }
+        .countdown-item small { font-size: 0.6rem; text-transform: uppercase; }
+
+        /* SPEAKERS */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .speaker-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .speaker-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* INFO CARD */
+        .info-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            word-wrap: break-word;
+        }
+
+        .btn-map {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #db4437;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .dresscode-box {
+            background: #fff;
+            color: #333;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-left: 5px solid var(--primary);
+        }
+
+        .rundown-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .rundown-table td {
+            padding: 10px 5px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            font-size: 0.85rem;
+        }
+        .time-col { color: var(--primary); font-weight: bold; width: 40%; white-space: nowrap; }
+
+        #jumlahHafalan { font-size: clamp(1.5rem, 10vw, 2.5rem); line-height: 1.2; }
+
+        #youtube-player { display: none; }
+        footer { padding: 40px 20px; background: #020617; text-align: center; font-size: 0.8rem; }
+
+        /* LOGO STYLE */
+        .logo-container { text-align: center; margin-bottom: 15px; }
+        .logo-sekolah {
+            width: 70px;
+            height: auto;
+            filter: brightness(0) saturate(100%) invert(71%) sepia(35%) saturate(583%) hue-rotate(5deg) brightness(92%) contrast(85%);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeIn 1.2s ease-out; }
+
+        @media (max-width: 360px) {
+            .countdown-item { min-width: 55px; padding: 8px; }
+            .time-col { width: 45%; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>🔗 Link Generator</h2>
-    
-    <label>Nama Orang Tua (Contoh: Bapak Yedi Rusmiyadi):</label>
-    <input type="text" id="inputTamu" placeholder="Nama yang muncul di depan">
+<div id="youtube-player"></div>
 
-    <label>Nama Siswa:</label>
-    <input type="text" id="inputSiswa" placeholder="Nama wisudawan/wati">
-
-    <label>Juz yang telah di hafal:</label>
-    <input type="text" id="inputJuz" placeholder="Contoh: 28, 29 dan 30">
-
-    <button class="gen-btn" onclick="generateLink()">Buat Link Undangan</button>
-
-    <div id="resultBox" class="result-area">
-        <small style="color: #888;">Link kamu:</small>
-        <p id="finalLink" style="font-size: 14px; color: #2980b9; margin: 5px 0; font-weight: bold;"></p>
-        
-        <button class="copy-btn" onclick="copyLink()">Salin Link</button>
-        <button id="waBtn" class="wa-btn" onclick="sendWA()">Kirim ke WhatsApp</button>
+<div class="cover" id="cover">
+    <div class="logo-container">
+        <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" alt="Logo Sekolah" class="logo-sekolah">
     </div>
+    <p>UNDANGAN WISUDA TAHFIDZ</p>
+    <h1>Hafidz Al-Qur'an</h1>
+    <div style="margin: 20px 0;">
+        <small>Kepada Yth:</small>
+        <h2 id="namaTamu" style="color: white; margin-top: 5px; font-size: 1.5rem;">Orang Tua/Wali</h2>
+    </div>
+    <button class="btn-open" onclick="bukaUndangan()">Buka Undangan</button>
+</div>
+
+<div id="isi" style="display:none;">
+    <div class="logo-container" style="margin-top: 30px;">
+        <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" alt="Logo Sekolah" class="logo-sekolah">
+    </div>
+    
+    <div class="section">
+        <h2 style="font-size: 1.2rem;">Assalamu’alaikum Wr. Wb.</h2>
+        <p style="font-size: 0.9rem;">Dengan mengharap Ridho Allah SWT, kami mengundang Bapak/Ibu untuk menghadiri prosesi Wisuda Tahfidz Al-Qur’an:</p>
+        
+        <div class="info-card">
+            <h2 id="namaSiswa" style="color: #fff; margin-bottom: 0; font-size: 1.5rem;">Ananda</h2>
+            <p style="margin-top: 5px; font-size: 0.9rem;">Yang telah menyelesaikan hafalan Al-Qur'an</p>
+            <h1 id="jumlahHafalan">Juz 30</h1>
+        </div>
+
+        <div class="theme-box">
+            <strong>"Hidup Mulia dengan Al-Quran"</strong>
+            <br><br>
+            "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya"
+            <br>
+            <small>(HR. Bukhari no. 5027)</small>
+        </div>
+    </div>
+
+    <div class="section" style="background: rgba(255,255,255,0.03);">
+        <h3 style="font-size: 1rem;">Menuju Acara</h3>
+        <div class="countdown-container" id="countdown">
+            <div class="countdown-item"><span id="days">00</span><small>Hari</small></div>
+            <div class="countdown-item"><span id="hours">00</span><small>Jam</small></div>
+            <div class="countdown-item"><span id="minutes">00</span><small>Menit</small></div>
+            <div class="countdown-item"><span id="seconds">00</span><small>Detik</small></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="info-card">
+            <h3 style="margin-top:0; font-size: 1.1rem;">Waktu & Tempat</h3>
+            <p style="font-size: 0.9rem;"><strong>Kamis, 30 April 2026</strong><br>Pukul 07.30 - 11.00 WIB</p>
+            <hr style="border-color: var(--primary); opacity: 0.2; margin: 15px 0;">
+            <p style="font-size: 0.9rem;"><strong>Masjid Al-Mulk (Masjid Peradaban)</strong><br>Terminal Jalur, Kota Sukabumi</p>
+            
+            <a href="https://maps.app.goo.gl/3BkrKEPezWYfR8hY9" target="_blank" class="btn-map">📍 Google Maps</a>
+
+            <div class="dresscode-box">
+                👔 Dresscode: Gamis/Koko Putih
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3 style="font-size: 1rem;">Susunan Acara</h3>
+        <div class="info-card">
+            <table class="rundown-table">
+                <tr><td class="time-col">07.30 - 08.00</td><td>Registrasi</td></tr>
+                <tr><td class="time-col">08.00 - 08.10</td><td>Pembukaan</td></tr>
+                <tr><td class="time-col">08.10 - 08.30</td><td>Lantunan Al-Qur'an</td></tr>
+                <tr><td class="time-col">08.30 - 09.00</td><td>Sambutan</td></tr>
+                <tr><td class="time-col">09.00 - 09.15</td><td>Setor hafalan</td></tr>
+                <tr><td class="time-col">09.15 - 09.45</td><td>Penyematan</td></tr>
+                <tr><td class="time-col">09.45 - 10.30</td><td>Tausiyah</td></tr>
+                <tr><td class="time-col">10.30 - 11.00</td><td>Penutup & Foto</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3 style="font-size: 1rem;">Sambutan</h3>
+        <div class="speaker-card" style="max-width: 300px; margin: 0 auto;">
+            <img src="https://github.com/user-attachments/assets/6abd2765-dfa3-4dca-ac1c-e74fca6953fb" alt="Ust Ir Totong Suparman" class="speaker-img">
+            <h4 style="font-size: 0.9rem; margin: 5px 0;">Ust. Ir. Totong Suparman, M.Pd</h4>
+            <p style="margin: 0;"><small>Ketua Yayasan Insan Mandiri Cendikia</small></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h3 style="font-size: 1rem;">Penceramah & Doa</h3>
+        <div class="speaker-grid">
+            <div class="speaker-card">
+                <img src="https://github.com/user-attachments/assets/223c9557-01d0-4ea7-8ca7-e5a05ceb7f14" class="speaker-img">
+                <h4 style="font-size: 0.9rem; margin: 5px 0;">Ir. H. Sumarli</h4>
+                <p style="margin: 0;"><small>Sekretaris DKM Masjid Agung</small></p>
+            </div>
+            <div class="speaker-card">
+                <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" class="speaker-img">
+                <h4 style="font-size: 0.9rem; margin: 5px 0;">Ust Saiful Anwar, M.Pd</h4>
+                <p style="margin: 0;"><small>Asatidz SMP IT Iman</small></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="section">
+        <p>Semoga Allah memudahkan setiap langkah kita<br>untuk berada di majelis Al-Qur'an</p>
+        <br>
+        <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Wassalamu’alaikum Wr Wb</h2>
+        <div style="margin-top: 25px; opacity: 0.9;">
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Hormat Kami,</p>
+            <p><strong style="color: var(--primary);">Panitia Wisuda Tahfidz SMPIT IMAN</strong></p>
+        </div>
+    </footer>
 </div>
 
 <script>
-    const baseURL = "https://kesiswaaninsanmandiri.github.io/wisudatahfidz/";
-
-    function generateLink() {
-        const tamu = document.getElementById("inputTamu").value;
-        const siswa = document.getElementById("inputSiswa").value;
-        const juz = document.getElementById("inputJuz").value;
-
-        if(!tamu || !siswa || !juz) {
-            alert("Harap isi semua kolom ya!");
-            return;
-        }
-
-        // Encode URI untuk menangani spasi dan karakter khusus
-        const fullURL = `${baseURL}?to=${encodeURIComponent(tamu)}&siswa=${encodeURIComponent(siswa)}&juz=${encodeURIComponent(juz)}`;
-
-        document.getElementById("finalLink").innerText = fullURL;
-        document.getElementById("resultBox").style.display = "block";
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            height: '0', width: '0', videoId: 'oIzVSAPAvJw',
+            playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'oIzVSAPAvJw' }
+        });
     }
 
-    function copyLink() {
-        // 1. Ambil data dari input
-        const linkText = document.getElementById("finalLink").innerText;
-        const tamu = document.getElementById("inputTamu").value;
-        const siswa = document.getElementById("inputSiswa").value;
-    
-        // 2. Susun format pesan lengkap (menggunakan tanda * untuk bold di WA)
-        const pesanLengkap = `*Assalamu'alaikum wr wb*\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Ayah/Bunda dari *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
-    
-        // 3. Proses salin (Metode Fallback/TextArea)
-        const tempInput = document.createElement("textarea");
-        tempInput.value = pesanLengkap; // Masukkan pesan lengkap ke sini
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        
-        try {
-            document.execCommand("copy");
-            alert("Alhamdulillah, link berhasil disalin!");
-        } catch (err) {
-            alert("Gagal menyalin, silakan coba lagi.");
-        }
-        
-        document.body.removeChild(tempInput);
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function bukaUndangan() {
+        document.getElementById("cover").style.display = "none";
+        document.getElementById("isi").style.display = "block";
+        window.scrollTo(0, 0);
+        if (player && player.playVideo) { player.playVideo(); }
     }
 
-    function sendWA() {
-    const linkText = document.getElementById("finalLink").innerText;
-    const tamu = document.getElementById("inputTamu").value;
-    const siswa = document.getElementById("inputSiswa").value;
+    const targetDate = new Date("April 30, 2026 07:30:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+    }, 1000);
 
-    const pesan = `*Assalamu'alaikum wr wb*\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Ayah/Bunda dari *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
-    
-    window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
-}
-    </script>
+    const params = new URLSearchParams(window.location.search);
+    const tamu = params.get("to");
+    const siswa = params.get("siswa");
+    const juz = params.get("juz");
+
+    if(tamu) document.getElementById("namaTamu").innerText = decodeURIComponent(tamu);
+    if(siswa) document.getElementById("namaSiswa").innerText = decodeURIComponent(siswa);
+    if(juz) document.getElementById("jumlahHafalan").innerText = "Juz " + decodeURIComponent(juz);
+</script>
 
 </body>
 </html>
