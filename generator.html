@@ -68,7 +68,7 @@
 <div class="container">
     <h2>🔗 Link Generator</h2>
     
-    <label>Nama Tamu (Contoh: Bapak Ahmad):</label>
+    <label>Nama Orang Tua (Contoh: Bapak Yedi Rusmiyadi):</label>
     <input type="text" id="inputTamu" placeholder="Nama yang muncul di depan">
 
     <label>Nama Siswa:</label>
@@ -119,13 +119,13 @@
         document.execCommand("copy");
         document.body.removeChild(tempInput);
         
-        alert("Link berhasil disalin!");
+        alert("Alhamdulillah, Link berhasil disalin!");
     }
 
     function sendWA() {
         const linkText = document.getElementById("finalLink").innerText;
         const tamu = document.getElementById("inputTamu").value;
-        const pesan = `Assalamu'alaikum, berikut adalah undangan Wisuda Tahfidz untuk ${tamu}: \n\n${linkText}`;
+        const pesan = `Assalamu'alaikum wr wb, dengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang ${tamu} bersama putra/putrinya ${siswa},untuk dapat hadir ke acara WISUDA TAHFIDZ SMP IT INSAN MANDIRI. <buka undangan> \n\n${linkText}`;
         
         window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
     }
