@@ -298,12 +298,19 @@
 
 <script>
     var player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtube-player', {
-            height: '0', width: '0', videoId: 'oIzVSAPAvJw',
-            playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'oIzVSAPAvJw' }
-        });
-    }
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0', 
+                width: '0', 
+                videoId: 'oIzVSAPAvJw',
+                playerVars: { 
+                    'autoplay': 0, 
+                    'loop': 1, 
+                    'playlist': 'oIzVSAPAvJw',
+                    'start': 30 // Tambahkan baris ini untuk mulai dari detik 30
+                }
+            });
+        }
 
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
