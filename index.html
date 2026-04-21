@@ -59,7 +59,7 @@
         .btn-open:hover { transform: scale(1.05); background: #e2bc75; }
 
         /* CONTENT SECTION */
-        .section { padding: 80px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+        .section { padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
         
         .theme-box {
             border: 1px solid var(--primary);
@@ -86,7 +86,7 @@
         .countdown-item span { display: block; font-size: 1.5rem; font-weight: bold; }
         .countdown-item small { font-size: 0.7rem; text-transform: uppercase; }
 
-        /* SPEAKERS */
+        /* SPEAKERS & PROFILE */
         .speaker-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -95,30 +95,65 @@
         }
         .speaker-card {
             background: var(--card-bg);
-            padding: 20px;
+            padding: 25px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
+            margin-bottom: 20px;
         }
         .speaker-img {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             border: 3px solid var(--primary);
             object-fit: cover;
             margin-bottom: 15px;
         }
 
-        /* INFO BOX */
+        /* INFO CARD & TABLES */
         .info-card {
             background: linear-gradient(145deg, #1e293b, #0f172a);
             padding: 30px;
             border-radius: 20px;
-            margin: 40px 0;
+            margin: 20px 0;
             border: 1px solid rgba(197, 160, 89, 0.3);
         }
 
-        #youtube-player { display: none; } /* Hidden Player */
+        .btn-map {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #db4437;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
+        .dresscode-box {
+            background: #fff;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 25px;
+            font-weight: 600;
+            border-left: 5px solid var(--primary);
+        }
+
+        .rundown-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 15px;
+        }
+        .rundown-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            font-size: 0.95rem;
+        }
+        .time-col { color: var(--primary); font-weight: bold; width: 35%; }
+
+        #youtube-player { display: none; }
         footer { padding: 50px; background: #020617; text-align: center; font-size: 0.9rem; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -148,7 +183,7 @@
         <div class="info-card">
             <h2 id="namaSiswa" style="color: #fff; margin-bottom: 0;">Ananda</h2>
             <p style="margin-top: 5px;">Telah menyelesaikan hafalan</p>
-            <h1 id="jumlahHafalan" style="font-size: 3rem;">3 Juz</h1>
+            <h1 id="jumlahHafalan" style="font-size: 2.5rem;">3 Juz</h1>
         </div>
 
         <div class="theme-box">
@@ -167,13 +202,46 @@
     </div>
 
     <div class="section">
+        <h3>Sambutan</h3>
+        <div class="speaker-card" style="max-width: 400px; margin: 0 auto;">
+            <img src="https://ui-avatars.com/api/?name=Totong+Suparman&background=c5a059&color=fff&size=200" alt="Ust Ir Totong Suparman" class="speaker-img">
+            <h4>Ust. Ir. Totong Suparman, M.Pd</h4>
+            <p><small>Ketua Yayasan Insan Mandiri Cendikia</small></p>
+        </div>
+    </div>
+
+    <div class="section">
         <div class="info-card">
             <h3 style="margin-top:0">Waktu & Tempat</h3>
             <p><strong>Kamis, 30 April 2026</strong></p>
             <p>Pukul 07.30 - 11.00 WIB</p>
-            <hr style="border-color: var(--primary); opacity: 0.3; margin: 20px 0;">
+            <hr style="border-color: var(--primary); opacity: 0.2; margin: 20px 0;">
             <p><strong>Masjid Al-Mulk (Masjid Peradaban)</strong></p>
             <p>Terminal Jalur, Kota Sukabumi</p>
+            
+            <a href="https://maps.app.goo.gl/JoMGqaiRy3Ura4Z7A" target="_blank" class="btn-map">📍 Lihat Lokasi di Maps</a>
+
+            <div class="dresscode-box">
+                👔 Dresscode: Gamis atau Koko Putih
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Susunan Acara</h3>
+        <div class="info-card">
+            <table class="rundown-table">
+                <tr><td class="time-col">07.30 - 08.00</td><td>Registrasi</td></tr>
+                <tr><td class="time-col">08.00 - 08.10</td><td>Pembukaan</td></tr>
+                <tr><td class="time-col">08.10 - 08.30</td><td>Lantunan Al-Qur'an</td></tr>
+                <tr><td class="time-col">08.30 - 09.00</td><td>Sambutan-sambutan</td></tr>
+                <tr><td class="time-col">09.00 - 09.15</td><td>Setor hafalan</td></tr>
+                <tr><td class="time-col">09.15 - 09.45</td><td>Prosesi Penyematan</td></tr>
+                <tr><td class="time-col">09.45 - 10.30</td><td>Tausiyah dan Muhasabah</td></tr>
+                <tr><td class="time-col">10.30 - 10.45</td><td>Muhasabah</td></tr>
+                <tr><td class="time-col">10.45 - 11.00</td><td>Penutupan</td></tr>
+                <tr><td class="time-col">11.00</td><td>Sesi foto</td></tr>
+            </table>
         </div>
     </div>
 
@@ -211,7 +279,7 @@
         player = new YT.Player('youtube-player', {
             height: '0',
             width: '0',
-            videoId: 'oIzVSAPAvJw', // ID Video dari link yang diberikan
+            videoId: 'oIzVSAPAvJw',
             playerVars: {
                 'autoplay': 0,
                 'loop': 1,
@@ -220,7 +288,6 @@
         });
     }
 
-    // Load YouTube SDK
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -231,8 +298,6 @@
         document.getElementById("cover").style.display = "none";
         document.getElementById("isi").style.display = "block";
         document.getElementById("isi").classList.add("animate");
-        
-        // Putar musik
         if (player && player.playVideo) {
             player.playVideo();
         }
@@ -240,28 +305,24 @@
 
     // 3. Countdown Timer
     const targetDate = new Date("April 30, 2026 07:30:00").getTime();
-
     const timer = setInterval(function() {
         const now = new Date().getTime();
         const distance = targetDate - now;
-
         const d = Math.floor(distance / (1000 * 60 * 60 * 24));
         const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((distance % (1000 * 60)) / 1000);
-
         document.getElementById("days").innerHTML = d;
         document.getElementById("hours").innerHTML = h;
         document.getElementById("minutes").innerHTML = m;
         document.getElementById("seconds").innerHTML = s;
-
         if (distance < 0) {
             clearInterval(timer);
             document.getElementById("countdown").innerHTML = "ACARA SEDANG BERLANGSUNG";
         }
     }, 1000);
 
-    // 4. URL Params (Sama seperti sebelumnya)
+    // 4. URL Params
     const params = new URLSearchParams(window.location.search);
     const tamu = params.get("to");
     const siswa = params.get("siswa");
@@ -269,10 +330,7 @@
 
     if(tamu) document.getElementById("namaTamu").innerText = tamu.replace(/\+/g,' ');
     if(siswa) document.getElementById("namaSiswa").innerText = siswa.replace(/\+/g,' ');
-    if(juz){
-    // .replace(/\+/g, ' ') berfungsi agar jika di URL ada tanda +, akan berubah jadi spasi
-    document.getElementById("jumlahHafalan").innerText = "Juz " + decodeURIComponent(juz);
-}
+    if(juz) document.getElementById("jumlahHafalan").innerText = "Juz " + decodeURIComponent(juz);
 
 </script>
 
