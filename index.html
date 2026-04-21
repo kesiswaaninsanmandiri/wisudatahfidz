@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Wisuda Tahfidz - Masjid Al-Mulk</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #c5a059; /* Gold */
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--primary); }
+
+        /* COVER */
+        .cover {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                        url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .cover h1 { font-size: 2.5rem; margin-bottom: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .cover p { font-size: 1.1rem; letter-spacing: 2px; }
+
+        .btn-open {
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn-open:hover { transform: scale(1.05); background: #e2bc75; }
+
+        /* CONTENT SECTION */
+        .section { padding: 80px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+        
+        .theme-box {
+            border: 1px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        /* COUNTDOWN */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .countdown-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 70px;
+            border-bottom: 3px solid var(--primary);
+        }
+        .countdown-item span { display: block; font-size: 1.5rem; font-weight: bold; }
+        .countdown-item small { font-size: 0.7rem; text-transform: uppercase; }
+
+        /* SPEAKERS */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .speaker-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .speaker-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* INFO BOX */
+        .info-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        #youtube-player { display: none; } /* Hidden Player */
+
+        footer { padding: 50px; background: #020617; text-align: center; font-size: 0.9rem; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate { animation: fadeIn 2s ease-in; }
+    </style>
+</head>
+<body>
+
+<div id="youtube-player"></div>
+
+<div class="cover" id="cover">
+    <p>UNDANGAN WISUDA TAHFIDZ</p>
+    <h1>Hafidz Al-Qur'an</h1>
+    <div style="margin: 20px 0;">
+        <small>Kepada Yth:</small>
+        <h2 id="namaTamu" style="color: white; margin-top: 5px;">Orang Tua/Wali</h2>
+    </div>
+    <button class="btn-open" onclick="bukaUndangan()">Buka Undangan</button>
+</div>
+
+<div id="isi" style="display:none;">
+
+    <div class="section">
+        <h2>Assalamu’alaikum Wr. Wb.</h2>
+        <p>Dengan mengharap Ridho Allah SWT, kami mengundang Bapak/Ibu untuk menghadiri prosesi Wisuda Tahfidz Al-Qur’an:</p>
+        
+        <div class="info-card">
+            <h2 id="namaSiswa" style="color: #fff; margin-bottom: 0;">Ananda</h2>
+            <p style="margin-top: 5px;">Telah menyelesaikan hafalan</p>
+            <h1 id="jumlahHafalan" style="font-size: 3rem;">3 Juz</h1>
+        </div>
+
+        <div class="theme-box">
+            "Hidup Mulia dengan Al-Quran"
+        </div>
+    </div>
+
+    <div class="section" style="background: rgba(255,255,255,0.03);">
+        <h3>Menuju Acara</h3>
+        <div class="countdown-container" id="countdown">
+            <div class="countdown-item"><span id="days">00</span><small>Hari</small></div>
+            <div class="countdown-item"><span id="hours">00</span><small>Jam</small></div>
+            <div class="countdown-item"><span id="minutes">00</span><small>Menit</small></div>
+            <div class="countdown-item"><span id="seconds">00</span><small>Detik</small></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="info-card">
+            <h3 style="margin-top:0">Waktu & Tempat</h3>
+            <p><strong>Kamis, 30 April 2026</strong></p>
+            <p>Pukul 07.30 - 11.00 WIB</p>
+            <hr style="border-color: var(--primary); opacity: 0.3; margin: 20px 0;">
+            <p><strong>Masjid Al-Mulk (Masjid Peradaban)</strong></p>
+            <p>Terminal Jalur, Kota Sukabumi</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Penceramah & Doa</h3>
+        <div class="speaker-grid">
+            <div class="speaker-card">
+                <img src="https://ui-avatars.com/api/?name=Sumarli&background=c5a059&color=fff&size=200" alt="Ir.H.Sumarli" class="speaker-img">
+                <h4>Ir. H. Sumarli</h4>
+                <p><small>Sekretaris DKM Masjid Agung Kota Sukabumi</small></p>
+                <p><strong>Penceramah</strong></p>
+            </div>
+            <div class="speaker-card">
+                <img src="https://ui-avatars.com/api/?name=Saiful+Anwar&background=c5a059&color=fff&size=200" alt="Ust Saiful Anwar" class="speaker-img">
+                <h4>Ust Saiful Anwar, M.Pd</h4>
+                <p><small>Ulama / Pendidik</small></p>
+                <p><strong>Pembaca Doa</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="section">
+        <p>Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu berkenan hadir untuk memberikan doa restu bagi para hafiz/ah.</p>
+        <p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p>
+        <br>
+        <p><strong>Panitia Wisuda Tahfidz SMPIT IMAN</strong></p>
+    </footer>
+
+</div>
+
+<script>
+    // 1. YouTube API Setup
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            height: '0',
+            width: '0',
+            videoId: 'oIzVSAPAvJw', // ID Video dari link yang diberikan
+            playerVars: {
+                'autoplay': 0,
+                'loop': 1,
+                'playlist': 'oIzVSAPAvJw'
+            }
+        });
+    }
+
+    // Load YouTube SDK
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 2. Fungsi Buka Undangan
+    function bukaUndangan() {
+        document.getElementById("cover").style.display = "none";
+        document.getElementById("isi").style.display = "block";
+        document.getElementById("isi").classList.add("animate");
+        
+        // Putar musik
+        if (player && player.playVideo) {
+            player.playVideo();
+        }
+    }
+
+    // 3. Countdown Timer
+    const targetDate = new Date("April 30, 2026 07:30:00").getTime();
+
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = d;
+        document.getElementById("hours").innerHTML = h;
+        document.getElementById("minutes").innerHTML = m;
+        document.getElementById("seconds").innerHTML = s;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML = "ACARA SEDANG BERLANGSUNG";
+        }
+    }, 1000);
+
+    // 4. URL Params (Sama seperti sebelumnya)
+    const params = new URLSearchParams(window.location.search);
+    const tamu = params.get("to");
+    const siswa = params.get("siswa");
+    const juz = params.get("juz");
+
+    if(tamu) document.getElementById("namaTamu").innerText = tamu.replace(/\+/g,' ');
+    if(siswa) document.getElementById("namaSiswa").innerText = siswa.replace(/\+/g,' ');
+    if(juz) document.getElementById("jumlahHafalan").innerText = juz + " Juz";
+
+</script>
+
+</body>
+</html>
