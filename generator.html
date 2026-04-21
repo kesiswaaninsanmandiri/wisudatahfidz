@@ -115,7 +115,7 @@
         const siswa = document.getElementById("inputSiswa").value;
     
         // 2. Susun format pesan lengkap (menggunakan tanda * untuk bold di WA)
-        const pesanLengkap = `Assalamu'alaikum wr wb\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu bersama putra/putrinya *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
+        const pesanLengkap = `*Assalamu'alaikum wr wb*\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Ayah/Bunda dari *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
     
         // 3. Proses salin (Metode Fallback/TextArea)
         const tempInput = document.createElement("textarea");
@@ -138,7 +138,7 @@
     const tamu = document.getElementById("inputTamu").value;
     const siswa = document.getElementById("inputSiswa").value;
 
-    const pesan = `Assalamu'alaikum wr wb\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu bersama putra/putrinya *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nKlik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
+    const pesan = `*Assalamu'alaikum wr wb*\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Ayah/Bunda dari *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
     
     window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
 }
