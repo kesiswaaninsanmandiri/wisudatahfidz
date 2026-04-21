@@ -269,7 +269,10 @@
 
     if(tamu) document.getElementById("namaTamu").innerText = tamu.replace(/\+/g,' ');
     if(siswa) document.getElementById("namaSiswa").innerText = siswa.replace(/\+/g,' ');
-    if(juz) document.getElementById("jumlahHafalan").innerText = juz + " Juz";
+    if(juz){
+    // .replace(/\+/g, ' ') berfungsi agar jika di URL ada tanda +, akan berubah jadi spasi
+    document.getElementById("jumlahHafalan").innerText = "Juz " + decodeURIComponent(juz);
+}
 
 </script>
 
