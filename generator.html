@@ -72,8 +72,8 @@
     <label>Nama Siswa:</label>
     <input type="text" id="inputSiswa" placeholder="Nama wisudawan/wati">
 
-    <label>Jumlah Juz:</label>
-    <input type="number" id="inputJuz" placeholder="Contoh: 30">
+    <label>Juz yang telah di hafal:</label>
+    <input type="text" id="inputJuz" placeholder="Contoh: 28, 29 dan 30">
 
     <button onclick="generateLink()">Buat Link Undangan</button>
 
@@ -81,6 +81,7 @@
         <small style="color: #888;">Link kamu:</small>
         <p id="finalLink" style="font-size: 14px; color: #2980b9; margin: 5px 0;"></p>
         <button class="copy-btn" onclick="copyLink()">Salin Link</button>
+        <button id="waBtn" style="background-color: #25d366; margin-top: 10px; display: none;" onclick="sendWA()">Kirim ke WhatsApp</button>
     </div>
 </div>
 
@@ -110,6 +111,34 @@
             alert("Link berhasil disalin!");
         });
     }
+    function sendWA() {
+    const linkText = document.getElementById("finalLink").innerText;
+    const tamu = document.getElementById("inputTamu").value;
+    
+    // Pesan pembuka WhatsApp
+    const pesan = `Assalamu'alaikum, berikut adalah undangan Wisuda Tahfidz untuk ${tamu}: ${linkText}`;
+    
+    // Membuka WhatsApp
+    window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
+}
+
+// Update fungsi generateLink untuk memunculkan tombol WA
+function generateLink() {
+    const tamu = document.getElementById("inputTamu").value;
+    const siswa = document.getElementById("inputSiswa").value;
+    const juz = document.getElementById("inputJuz").value;
+
+    if(!tamu || !siswa || !juz) {
+        alert("Harap isi semua kolom ya!");
+        return;
+    }
+
+    const fullURL = `${baseURL}?to=${encodeURIComponent(tamu)}&siswa=${encodeURIComponent(siswa)}&juz=${encodeURIComponent(juz)}`;
+
+    document.getElementById("finalLink").innerText = fullURL;
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("waBtn").style.display = "block"; // Munculkan tombol WA
+}
 </script>
 
 </body>
