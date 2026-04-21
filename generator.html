@@ -11,7 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
         .container {
@@ -35,16 +35,18 @@
         button {
             width: 100%;
             padding: 12px;
-            background-color: #c5a059;
             color: white;
             border: none;
             border-radius: 6px;
-            margin-top: 20px;
+            margin-top: 10px;
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
+            transition: 0.3s;
         }
-        button:hover { background-color: #a6864a; }
+        .gen-btn { background-color: #c5a059; margin-top: 20px; }
+        .gen-btn:hover { background-color: #a6864a; }
+        
         .result-area {
             margin-top: 25px;
             padding: 15px;
@@ -54,11 +56,11 @@
             word-break: break-all;
             display: none;
         }
-        .copy-btn {
-            background-color: #2ecc71;
-            margin-top: 10px;
-        }
+        .copy-btn { background-color: #2ecc71; }
         .copy-btn:hover { background-color: #27ae60; }
+        
+        .wa-btn { background-color: #25d366; }
+        .wa-btn:hover { background-color: #1ebe57; }
     </style>
 </head>
 <body>
@@ -75,13 +77,14 @@
     <label>Juz yang telah di hafal:</label>
     <input type="text" id="inputJuz" placeholder="Contoh: 28, 29 dan 30">
 
-    <button onclick="generateLink()">Buat Link Undangan</button>
+    <button class="gen-btn" onclick="generateLink()">Buat Link Undangan</button>
 
     <div id="resultBox" class="result-area">
         <small style="color: #888;">Link kamu:</small>
-        <p id="finalLink" style="font-size: 14px; color: #2980b9; margin: 5px 0;"></p>
+        <p id="finalLink" style="font-size: 14px; color: #2980b9; margin: 5px 0; font-weight: bold;"></p>
+        
         <button class="copy-btn" onclick="copyLink()">Salin Link</button>
-        <button id="waBtn" style="background-color: #25d366; margin-top: 10px; display: none;" onclick="sendWA()">Kirim ke WhatsApp</button>
+        <button id="waBtn" class="wa-btn" onclick="sendWA()">Kirim ke WhatsApp</button>
     </div>
 </div>
 
@@ -107,38 +110,25 @@
 
     function copyLink() {
         const linkText = document.getElementById("finalLink").innerText;
-        navigator.clipboard.writeText(linkText).then(() => {
-            alert("Link berhasil disalin!");
-        });
+        
+        // Metode fallback agar lebih stabil di berbagai perangkat/browser
+        const tempInput = document.createElement("textarea");
+        tempInput.value = linkText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        
+        alert("Link berhasil disalin!");
     }
+
     function sendWA() {
-    const linkText = document.getElementById("finalLink").innerText;
-    const tamu = document.getElementById("inputTamu").value;
-    
-    // Pesan pembuka WhatsApp
-    const pesan = `Assalamu'alaikum, berikut adalah undangan Wisuda Tahfidz untuk ${tamu}: ${linkText}`;
-    
-    // Membuka WhatsApp
-    window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
-}
-
-// Update fungsi generateLink untuk memunculkan tombol WA
-function generateLink() {
-    const tamu = document.getElementById("inputTamu").value;
-    const siswa = document.getElementById("inputSiswa").value;
-    const juz = document.getElementById("inputJuz").value;
-
-    if(!tamu || !siswa || !juz) {
-        alert("Harap isi semua kolom ya!");
-        return;
+        const linkText = document.getElementById("finalLink").innerText;
+        const tamu = document.getElementById("inputTamu").value;
+        const pesan = `Assalamu'alaikum, berikut adalah undangan Wisuda Tahfidz untuk ${tamu}: \n\n${linkText}`;
+        
+        window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
     }
-
-    const fullURL = `${baseURL}?to=${encodeURIComponent(tamu)}&siswa=${encodeURIComponent(siswa)}&juz=${encodeURIComponent(juz)}`;
-
-    document.getElementById("finalLink").innerText = fullURL;
-    document.getElementById("resultBox").style.display = "block";
-    document.getElementById("waBtn").style.display = "block"; // Munculkan tombol WA
-}
 </script>
 
 </body>
