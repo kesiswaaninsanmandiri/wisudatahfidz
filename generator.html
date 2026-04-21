@@ -115,7 +115,7 @@
         const siswa = document.getElementById("inputSiswa").value;
     
         // 2. Susun format pesan lengkap (menggunakan tanda * untuk bold di WA)
-        const pesanLengkap = `Assalamu'alaikum wr wb, dengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang ${tamu} bersama putra/putrinya ${siswa}, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*. <buka undangan> \n\n${linkText}`;
+        const pesanLengkap = `Assalamu'alaikum wr wb\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu bersama putra/putrinya *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nSilahkan klik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
     
         // 3. Proses salin (Metode Fallback/TextArea)
         const tempInput = document.createElement("textarea");
@@ -125,7 +125,7 @@
         
         try {
             document.execCommand("copy");
-            alert("Pesan lengkap & link berhasil disalin!");
+            alert("Alhamdulillah, link berhasil disalin!");
         } catch (err) {
             alert("Gagal menyalin, silakan coba lagi.");
         }
@@ -134,18 +134,15 @@
     }
 
     function sendWA() {
-        const linkText = document.getElementById("finalLink").innerText;
-        const tamu = document.getElementById("inputTamu").value;
+    const linkText = document.getElementById("finalLink").innerText;
+    const tamu = document.getElementById("inputTamu").value;
+    const siswa = document.getElementById("inputSiswa").value;
+
+    const pesan = `Assalamu'alaikum wr wb\n\nKepada Yth:\n*${tamu}*\n\nDengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu bersama putra/putrinya *${siswa}*, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*.\n\nKlik tautan di bawah ini untuk membuka undangan:\n${linkText}`;
     
-        // TAMBAHKAN BARIS INI: Ambil nilai dari input siswa
-        const siswa = document.getElementById("inputSiswa").value;
-    
-        // Sekarang variabel ${siswa} sudah ada isinya
-        const pesan = `Assalamu'alaikum wr wb, dengan tidak mengurangi rasa hormat, melalui pesan ini kami mengundang ${tamu} bersama putra/putrinya ${siswa}, untuk dapat hadir ke acara *WISUDA TAHFIDZ SMP IT INSAN MANDIRI*. <buka undangan> \n\n${linkText}`;
-    
-        window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
-    }
-</script>
+    window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, '_blank');
+}
+    </script>
 
 </body>
 </html>
