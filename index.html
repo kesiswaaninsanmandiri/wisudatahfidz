@@ -70,11 +70,11 @@
             font-size: 0.9rem;
         }
 
-        /* COUNTDOWN - RESPONSIVE FIX */
+        /* COUNTDOWN */
         .countdown-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Agar melipat jika layar terlalu sempit */
+            flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
         }
@@ -82,7 +82,7 @@
             background: var(--card-bg);
             padding: 10px;
             border-radius: 10px;
-            flex: 1; /* Ukuran sama rata */
+            flex: 1;
             min-width: 65px;
             max-width: 80px;
             border-bottom: 3px solid var(--primary);
@@ -145,7 +145,6 @@
             border-left: 5px solid var(--primary);
         }
 
-        /* RUNDOWN TABLE - MOBILE OPTIMIZED */
         .rundown-table {
             width: 100%;
             border-collapse: collapse;
@@ -163,26 +162,20 @@
         #youtube-player { display: none; }
         footer { padding: 40px 20px; background: #020617; text-align: center; font-size: 0.8rem; }
 
-        /* ANIMATION */
+        /* LOGO STYLE */
+        .logo-container { text-align: center; margin-bottom: 15px; }
+        .logo-sekolah {
+            width: 70px;
+            height: auto;
+            filter: brightness(0) saturate(100%) invert(71%) sepia(35%) saturate(583%) hue-rotate(5deg) brightness(92%) contrast(85%);
+        }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate { animation: fadeIn 1.2s ease-out; }
 
-        /* KHUSUS LAYAR SANGAT KECIL */
         @media (max-width: 360px) {
             .countdown-item { min-width: 55px; padding: 8px; }
             .time-col { width: 45%; }
-        }
-                /* Style khusus untuk Logo Sekolah */
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .logo-sekolah {
-            width: 80px; /* Sesuaikan ukuran logo */
-            height: auto;
-            /* Efek Filter untuk mengubah warna gambar menjadi Gold/Emas */
-            filter: brightness(0) saturate(100%) invert(71%) sepia(35%) saturate(583%) hue-rotate(5deg) brightness(92%) contrast(85%);
         }
     </style>
 </head>
@@ -191,11 +184,8 @@
 <div id="youtube-player"></div>
 
 <div class="cover" id="cover">
-   <div class="cover" id="cover">
     <div class="logo-container">
-        <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" 
-             alt="Logo Sekolah" 
-             class="logo-sekolah">
+        <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" alt="Logo Sekolah" class="logo-sekolah">
     </div>
     <p>UNDANGAN WISUDA TAHFIDZ</p>
     <h1>Hafidz Al-Qur'an</h1>
@@ -207,11 +197,9 @@
 </div>
 
 <div id="isi" style="display:none;">
-        <div class="logo-container" style="margin-top: 30px;">
-            <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" 
-                 alt="Logo Sekolah" 
-                 class="logo-sekolah">
-        </div>
+    <div class="logo-container" style="margin-top: 30px;">
+        <img src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" alt="Logo Sekolah" class="logo-sekolah">
+    </div>
     
     <div class="section">
         <h2 style="font-size: 1.2rem;">Assalamu’alaikum Wr. Wb.</h2>
@@ -226,7 +214,7 @@
         <div class="theme-box">
             <strong>"Hidup Mulia dengan Al-Quran"</strong>
             <br><br>
-            Karena Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya
+            "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya"
             <br>
             <small>(HR. Bukhari no. 5027)</small>
         </div>
@@ -273,14 +261,14 @@
         </div>
     </div>
 
-        <div class="section">
-            <h3 style="font-size: 1rem;">Sambutan</h3>
-            <div class="speaker-card" style="max-width: 300px; margin: 0 auto;">
-                <img src="https://github.com/user-attachments/assets/6abd2765-dfa3-4dca-ac1c-e74fca6953fb" alt="Ust Ir Totong Suparman" class="speaker-img">
-                <h4 style="font-size: 0.9rem; margin: 5px 0;">Ust. Ir. Totong Suparman, M.Pd</h4>
-                <p style="margin: 0;"><small>Ketua Yayasan Insan Mandiri Cendikia</small></p>
-            </div>
+    <div class="section">
+        <h3 style="font-size: 1rem;">Sambutan</h3>
+        <div class="speaker-card" style="max-width: 300px; margin: 0 auto;">
+            <img src="https://github.com/user-attachments/assets/6abd2765-dfa3-4dca-ac1c-e74fca6953fb" alt="Ust Ir Totong Suparman" class="speaker-img">
+            <h4 style="font-size: 0.9rem; margin: 5px 0;">Ust. Ir. Totong Suparman, M.Pd</h4>
+            <p style="margin: 0;"><small>Ketua Yayasan Insan Mandiri Cendikia</small></p>
         </div>
+    </div>
     
     <div class="section">
         <h3 style="font-size: 1rem;">Penceramah & Doa</h3>
@@ -300,17 +288,13 @@
 
     <footer class="section">
         <p>Semoga Allah memudahkan setiap langkah kita<br>untuk berada di majelis Al-Qur'an</p>
-        
         <br>
-        
         <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Wassalamu’alaikum Wr Wb</h2>
-        
         <div style="margin-top: 25px; opacity: 0.9;">
             <p style="margin-bottom: 5px; font-size: 0.9rem;">Hormat Kami,</p>
             <p><strong style="color: var(--primary);">Panitia Wisuda Tahfidz SMPIT IMAN</strong></p>
         </div>
     </footer>
-
 </div>
 
 <script>
