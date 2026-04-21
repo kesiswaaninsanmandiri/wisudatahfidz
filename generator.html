@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Link Undangan Wisuda</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #c5a059;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        button:hover { background-color: #a6864a; }
+        .result-area {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            word-break: break-all;
+            display: none;
+        }
+        .copy-btn {
+            background-color: #2ecc71;
+            margin-top: 10px;
+        }
+        .copy-btn:hover { background-color: #27ae60; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🔗 Link Generator</h2>
+    
+    <label>Nama Tamu (Contoh: Bapak Ahmad):</label>
+    <input type="text" id="inputTamu" placeholder="Nama yang muncul di depan">
+
+    <label>Nama Siswa:</label>
+    <input type="text" id="inputSiswa" placeholder="Nama wisudawan/wati">
+
+    <label>Jumlah Juz:</label>
+    <input type="number" id="inputJuz" placeholder="Contoh: 30">
+
+    <button onclick="generateLink()">Buat Link Undangan</button>
+
+    <div id="resultBox" class="result-area">
+        <small style="color: #888;">Link kamu:</small>
+        <p id="finalLink" style="font-size: 14px; color: #2980b9; margin: 5px 0;"></p>
+        <button class="copy-btn" onclick="copyLink()">Salin Link</button>
+    </div>
+</div>
+
+<script>
+    const baseURL = "https://kesiswaaninsanmandiri.github.io/wisudatahfidz/";
+
+    function generateLink() {
+        const tamu = document.getElementById("inputTamu").value;
+        const siswa = document.getElementById("inputSiswa").value;
+        const juz = document.getElementById("inputJuz").value;
+
+        if(!tamu || !siswa || !juz) {
+            alert("Harap isi semua kolom ya!");
+            return;
+        }
+
+        // Encode URI untuk menangani spasi dan karakter khusus
+        const fullURL = `${baseURL}?to=${encodeURIComponent(tamu)}&siswa=${encodeURIComponent(siswa)}&juz=${encodeURIComponent(juz)}`;
+
+        document.getElementById("finalLink").innerText = fullURL;
+        document.getElementById("resultBox").style.display = "block";
+    }
+
+    function copyLink() {
+        const linkText = document.getElementById("finalLink").innerText;
+        navigator.clipboard.writeText(linkText).then(() => {
+            alert("Link berhasil disalin!");
+        });
+    }
+</script>
+
+</body>
+</html>
