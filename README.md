@@ -6,3 +6,4 @@ wisuda tahfidz 2026
 <img width="960" height="640" alt="mengaji 2_11zon" src="https://github.com/user-attachments/assets/99b97cc0-ad2d-41a8-a2e2-59c72c7efe1a" />
 <img width="493" height="633" alt="ust H  Sumarli" src="https://github.com/user-attachments/assets/e1fd0497-4566-439f-b265-028a4d043b42" />
 <img width="481" height="753" alt="logo sekolah (1)" src="https://github.com/user-attachments/assets/f0abe2e6-9b72-432b-b79c-1080eeaf7fb4" />
+[Rahman Ya Rahman.mp3](https://github.com/user-attachments/files/27069214/Rahman.Ya.Rahman.mp3)
