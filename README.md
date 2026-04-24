@@ -5,3 +5,4 @@ wisuda tahfidz 2026
 <img width="288" height="334" alt="ust sanwar" src="https://github.com/user-attachments/assets/faec1e07-ba1d-4bb4-99ff-cdc6c7fbd8da" />
 <img width="481" height="753" alt="logo sekolah" src="https://github.com/user-attachments/assets/58778fb3-ecdc-4d54-91aa-95c938d2078b" />
 <img width="960" height="640" alt="mengaji 2 jpg" src="https://github.com/user-attachments/assets/898fb56b-2734-4ab0-98b6-75d07eded16f" />
+<img width="1024" height="768" alt="lapangsekolah" src="https://github.com/user-attachments/assets/e6805593-7ae0-4a58-965e-86d9cadb640b" />
