@@ -8,6 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
+                /* State awal elemen (tersembunyi dan sedikit di bawah) */
+                .reveal {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.8s ease-out;
+                }
+                
+                /* State saat elemen muncul di layar */
+                .reveal.active {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                /* Variasi animasi dari samping jika diinginkan */
+                .reveal-left {
+                    opacity: 0;
+                    transform: translateX(-50px);
+                    transition: all 0.8s ease-out;
+                }
+                
+                .reveal-left.active {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
         :root {
             --primary: #c5a059; /* Gold */
             --bg-dark: #0f172a;
@@ -206,13 +231,13 @@
         <h2 style="font-size: 1.2rem;">Assalamu’alaikum Wr. Wb.</h2>
         <p style="font-size: 0.9rem;">Dengan mengharap Ridho Allah SWT, kami mengundang Bapak/Ibu untuk menghadiri prosesi Wisuda Tahfidz Al-Qur’an:</p>
         
-        <div class="info-card">
+            <div class="info-card reveal">
             <h2 id="namaSiswa" style="color: #fff; margin-bottom: 0; font-size: 1.5rem;">Ananda</h2>
             <p style="margin-top: 5px; font-size: 0.9rem;">Yang telah menyelesaikan hafalan Al-Qur'an</p>
             <h1 id="jumlahHafalan">Juz 30</h1>
         </div>
 
-        <div class="theme-box">
+        <div class="theme-box reveal">
             <strong>"Hidup Mulia dengan Al-Quran"</strong>
             <br><br>
             "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya"
@@ -232,7 +257,7 @@
     </div>
 
     <div class="section">
-        <div class="info-card">
+        <div class="info-card reveal">
             <h3 style="margin-top:0; font-size: 1.1rem;">Waktu & Tempat</h3>
             <p style="font-size: 0.9rem;"><strong>Kamis, 30 April 2026</strong><br>Pukul 07.30 - 11.00 WIB</p>
             <hr style="border-color: var(--primary); opacity: 0.2; margin: 15px 0;">
@@ -248,7 +273,7 @@
 
     <div class="section">
         <h3 style="font-size: 1rem;">Susunan Acara</h3>
-        <div class="info-card">
+        <div class="info-card reveal">
             <table class="rundown-table">
                 <tr><td class="time-col">07.30 - 08.00</td><td>Registrasi</td></tr>
                 <tr><td class="time-col">08.00 - 08.10</td><td>Pembukaan</td></tr>
@@ -264,7 +289,7 @@
 
     <div class="section">
         <h3 style="font-size: 1rem;">Sambutan</h3>
-        <div class="speaker-card" style="max-width: 300px; margin: 0 auto;">
+        <div class="speaker-card reveal" style="max-width: 300px; margin: 0 auto;">
             <img src="https://github.com/user-attachments/assets/6abd2765-dfa3-4dca-ac1c-e74fca6953fb" alt="Ust Ir Totong Suparman" class="speaker-img">
             <h4 style="font-size: 0.9rem; margin: 5px 0;">Ust. Ir. Totong Suparman, M.Pd</h4>
             <p style="margin: 0;"><small>Ketua Yayasan Insan Mandiri Cendikia</small></p>
@@ -344,6 +369,39 @@
     if(tamu) document.getElementById("namaTamu").innerText = decodeURIComponent(tamu);
     if(siswa) document.getElementById("namaSiswa").innerText = decodeURIComponent(siswa);
     if(juz) document.getElementById("jumlahHafalan").innerText = "Juz " + decodeURIComponent(juz);
+
+    // Fungsi untuk memantau scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        // Jika elemen masuk ke area layar
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        } else {
+            // Hapus baris di bawah jika Anda ingin animasi hanya terjadi sekali
+            entry.target.classList.remove('active'); 
+        }
+    });
+}, {
+    threshold: 0.1 // Elemen akan terpicu jika 10% bagiannya terlihat
+});
+
+// Menjalankan pemantauan setelah undangan dibuka
+function aktifkanAnimasiScroll() {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left');
+    revealElements.forEach((el) => observer.observe(el));
+}
+
+// Update fungsi bukaUndangan Anda agar memicu observer
+function bukaUndangan() {
+    document.getElementById("cover").style.display = "none";
+    document.getElementById("isi").style.display = "block";
+    window.scrollTo(0, 0);
+    
+    if (player && player.playVideo) { player.playVideo(); }
+    
+    // Panggil fungsi animasi di sini
+    aktifkanAnimasiScroll();
+}
 </script>
 
 </body>
