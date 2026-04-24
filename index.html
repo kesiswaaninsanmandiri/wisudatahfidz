@@ -216,10 +216,11 @@
     </style>
 </head>
 <body>
+    <audio id="musikUndangan" loop>
+        <source src="https://github.com/user-attachments/files/27069214/Rahman.Ya.Rahman.mp3" type="audio/mpeg">
+    </audio>
 
-<div id="youtube-player"></div>
-
-<div class="cover" id="cover">
+    <div class="cover" id="cover">
     <div class="logo-container">
         <img src="https://github.com/user-attachments/assets/f0abe2e6-9b72-432b-b79c-1080eeaf7fb4" 
              alt="Logo Sekolah" 
@@ -357,13 +358,6 @@
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    function bukaUndangan() {
-        document.getElementById("cover").style.display = "none";
-        document.getElementById("isi").style.display = "block";
-        window.scrollTo(0, 0);
-        if (player && player.playVideo) { player.playVideo(); }
-    }
-
     const targetDate = new Date("April 30, 2026 07:30:00").getTime();
     setInterval(function() {
         const now = new Date().getTime();
@@ -404,7 +398,7 @@ function aktifkanAnimasiScroll() {
     revealElements.forEach((el) => observer.observe(el));
 }
 
-    function bukaUndangan() {
+   function bukaUndangan() {
     // 1. Sembunyikan bagian cover
     document.getElementById("cover").style.display = "none";
     
@@ -417,16 +411,19 @@ function aktifkanAnimasiScroll() {
     // 4. Scroll otomatis ke atas
     window.scrollTo(0, 0);
     
-    // 5. Putar musik/video jika ada
-    if (player && player.playVideo) { 
-        player.playVideo(); 
+    // 5. Putar musik MP3 (Sudah diperbaiki untuk iPhone & Android)
+    var lagu = document.getElementById("musikUndangan");
+    if (lagu) {
+        lagu.play().catch(function(error) {
+            console.log("Gagal putar musik:", error);
+        });
     }
     
     // 6. Jalankan animasi scroll (Intersection Observer)
     if (typeof aktifkanAnimasiScroll === "function") {
         aktifkanAnimasiScroll();
     }
-    }
+}
 </script>
 
 </body>
