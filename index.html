@@ -357,11 +357,6 @@
                 </select>
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <label>Pesan/Doa untuk Ananda:</label>
-                <textarea id="rsvpPesan" name="pesan" rows="3" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;" placeholder="Tulis doa atau pesan..."></textarea>
-            </div>
-
             <button type="submit" id="btnSubmit" class="btn-open" style="width: 100%; margin-top: 0;">Kirim Konfirmasi</button>
         </form>
         <p id="pesanSukses" style="display:none; color: var(--primary); margin-top: 15px; font-weight: bold; text-align: center;">Terima kasih, data telah kami terima! 🙏</p>
@@ -488,7 +483,6 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
         siswa: document.getElementById('hiddenSiswa').value,
         status: document.getElementById('rsvpStatus').value,
         kehadiran: document.getElementById('rsvpKehadiran').value,
-        pesan: document.getElementById('rsvpPesan').value
     };
 
     fetch(scriptURL, {
