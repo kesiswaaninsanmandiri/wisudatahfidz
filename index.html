@@ -337,24 +337,34 @@
         <h3>Konfirmasi Kehadiran</h3>
         <p>Mohon konfirmasi kehadiran Bapak/Ibu:</p>
         <form id="rsvpForm" style="text-align: left; margin-top: 15px;">
+            <input type="hidden" id="hiddenSiswa" name="siswa">
+
             <div style="margin-bottom: 10px;">
-                <label>Nama:</label>
-                <input type="text" id="rsvpNama" name="nama" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;" required>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label>Kehadiran:</label>
-                <select id="rsvpKehadiran" name="kehadiran" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: #1e293b; color: white;" required>
-                    <option value="Hadir">Hadir</option>
-                    <option value="Tidak Hadir">Tidak Hadir</option>
+                <label>Yang Akan Hadir:</label>
+                <select id="rsvpStatus" name="status" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--primary); background: #1e293b; color: white;" required>
+                    <option value="" disabled selected>Pilih...</option>
+                    <option value="Ayah">Ayah</option>
+                    <option value="Bunda">Bunda</option>
+                    <option value="Ayah & Bunda">Ayah & Bunda</option>
                 </select>
             </div>
-            <div style="margin-bottom: 15px;">
-                <label>Pesan/Doa:</label>
-                <textarea id="rsvpPesan" name="pesan" rows="3" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;"></textarea>
+
+            <div style="margin-bottom: 10px;">
+                <label>Kehadiran:</label>
+                <select id="rsvpKehadiran" name="kehadiran" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--primary); background: #1e293b; color: white;" required>
+                    <option value="Hadir">Insya Allah Hadir</option>
+                    <option value="Tidak Hadir">Maaf, Berhalangan Hadir</option>
+                </select>
             </div>
+
+            <div style="margin-bottom: 15px;">
+                <label>Pesan/Doa untuk Ananda:</label>
+                <textarea id="rsvpPesan" name="pesan" rows="3" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;" placeholder="Tulis doa atau pesan..."></textarea>
+            </div>
+
             <button type="submit" id="btnSubmit" class="btn-open" style="width: 100%; margin-top: 0;">Kirim Konfirmasi</button>
         </form>
-        <p id="pesanSukses" style="display:none; color: var(--primary); margin-top: 15px; font-weight: bold;">Terima kasih, data telah kami terima! 🙏</p>
+        <p id="pesanSukses" style="display:none; color: var(--primary); margin-top: 15px; font-weight: bold; text-align: center;">Terima kasih, data telah kami terima! 🙏</p>
     </div>
 </div>
 
@@ -457,7 +467,13 @@ function aktifkanAnimasiScroll() {
     }
 }
 
-    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+// A. Ambil nama siswa dari URL dan masukkan ke input tersembunyi
+const urlParams = new URLSearchParams(window.location.search);
+const namaSiswaDihalaman = urlParams.get("siswa") || "Siswa Tidak Diketahui";
+document.getElementById('hiddenSiswa').value = decodeURIComponent(namaSiswaDihalaman);
+
+// B. Proses pengiriman data
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const btn = document.getElementById('btnSubmit');
@@ -465,11 +481,12 @@ function aktifkanAnimasiScroll() {
     btn.innerText = "Mengirim...";
     btn.disabled = true;
 
-    // AMBIL URL WEB APP DARI LANGKAH 2 TADI
+    // GANTI DENGAN URL WEB APP ANDA
     const scriptURL = 'https://script.google.com/macros/s/AKfycby8r8r0TkRkksiTQvVrUhibdcuuf3TTp0rz98QyjAwXWBIWLItlb_gz9cAP2Vyr79h7/exec';
 
     const data = {
-        nama: document.getElementById('rsvpNama').value,
+        siswa: document.getElementById('hiddenSiswa').value,
+        status: document.getElementById('rsvpStatus').value,
         kehadiran: document.getElementById('rsvpKehadiran').value,
         pesan: document.getElementById('rsvpPesan').value
     };
@@ -484,6 +501,7 @@ function aktifkanAnimasiScroll() {
         document.getElementById('rsvpForm').reset();
     })
     .catch(error => {
+        console.error('Error!', error.message);
         alert('Maaf, terjadi kesalahan. Silakan coba lagi.');
         btn.innerText = "Kirim Konfirmasi";
         btn.disabled = false;
