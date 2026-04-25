@@ -332,6 +332,32 @@
         </div>
     </div>
 
+    <div class="section reveal">
+    <div class="info-card">
+        <h3>Konfirmasi Kehadiran</h3>
+        <p>Mohon konfirmasi kehadiran Bapak/Ibu:</p>
+        <form id="rsvpForm" style="text-align: left; margin-top: 15px;">
+            <div style="margin-bottom: 10px;">
+                <label>Nama:</label>
+                <input type="text" id="rsvpNama" name="nama" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;" required>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label>Kehadiran:</label>
+                <select id="rsvpKehadiran" name="kehadiran" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: #1e293b; color: white;" required>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>Pesan/Doa:</label>
+                <textarea id="rsvpPesan" name="pesan" rows="3" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: white;"></textarea>
+            </div>
+            <button type="submit" id="btnSubmit" class="btn-open" style="width: 100%; margin-top: 0;">Kirim Konfirmasi</button>
+        </form>
+        <p id="pesanSukses" style="display:none; color: var(--primary); margin-top: 15px; font-weight: bold;">Terima kasih, data telah kami terima! 🙏</p>
+    </div>
+</div>
+
     <footer class="section">
         <p>Semoga Allah memudahkan setiap langkah kita<br>untuk berada di majelis Al-Qur'an</p>
         <br>
@@ -430,6 +456,39 @@ function aktifkanAnimasiScroll() {
         aktifkanAnimasiScroll();
     }
 }
+
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btn = document.getElementById('btnSubmit');
+    const msg = document.getElementById('pesanSukses');
+    btn.innerText = "Mengirim...";
+    btn.disabled = true;
+
+    // AMBIL URL WEB APP DARI LANGKAH 2 TADI
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby8r8r0TkRkksiTQvVrUhibdcuuf3TTp0rz98QyjAwXWBIWLItlb_gz9cAP2Vyr79h7/exec';
+
+    const data = {
+        nama: document.getElementById('rsvpNama').value,
+        kehadiran: document.getElementById('rsvpKehadiran').value,
+        pesan: document.getElementById('rsvpPesan').value
+    };
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        btn.style.display = "none";
+        msg.style.display = "block";
+        document.getElementById('rsvpForm').reset();
+    })
+    .catch(error => {
+        alert('Maaf, terjadi kesalahan. Silakan coba lagi.');
+        btn.innerText = "Kirim Konfirmasi";
+        btn.disabled = false;
+    });
+});
 </script>
 
 </body>
